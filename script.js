@@ -1,43 +1,41 @@
-const inputBox = document.getElementById("input-box");
-const inputContainer = document.getElementById("list-container");
+document.addEventListener("DOMContentLoaded", function() {
+    const inputBox = document.getElementById("input-box");
+    const listContainer = document.getElementById("list-container");
 
-/**
- * Adds task to list
- */
-function addTask(){
-    if(inputBox.value === ''){
-        alert("You must enter something");
-    } else {
-        let li = document.createElement("li");
-        li.innerHTML = inputBox.value;
-        listContainer.appendChild(li);
-        let span = document.createElement("span");
-        span.innerHTML = '/u00d7';
-        li.appendChild(span);
+    window.addTask = function addTask(){
+        if(inputBox.value === ''){
+            alert("You must enter something");
+        } else {
+            let li = document.createElement("li");
+            li.innerHTML = inputBox.value;
+            listContainer.appendChild(li);
+            let span = document.createElement("span");
+            span.innerHTML = '\u00d7'; // Unicode for multiplication symbol
+            li.appendChild(span);
+        }
+        inputBox.value = "";
+        saveData();
     }
-    inputBox.value = "";
-    saveData();
-}
 
-listContainer.addEventListener("click", function(e){
+    listContainer.addEventListener("click", function(e){
+        if(e.target.tagName === "LI"){
+            e.target.classList.toggle("checked");
+            saveData();
+        } else if(e.target.tagName === "SPAN"){
+            e.target.parentElement.remove();
+            saveData();
+        }
+    }, false);
 
-if(e.target.tagName === "LI"){
-    e.target.classList.toggle("checked");
-    saveData();
-} else if(e.target.tagName === "SPAN"){
-    e.target.parentElement.remove();
-    saveData();
-}    
-}, false);
+    function saveData() {
+        localStorage.setItem("data", listContainer.innerHTML);
+    }
 
-/**
- * Saves list to browser
- */
-function saveData() {
-    localStorage.setItem("data", listContainer.innerHTML);
-}
+    function showTask(){
+        listContainer.innerHTML = localStorage.getItem("data");
+    }
 
-function showTask(){
-    listContainer.innerHTML = localStorage.getItem("data");
-}
-showTask();
+    showTask();
+});
+
+
