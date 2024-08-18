@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     const inputBox = document.getElementById("input-box");
     const listContainer = document.getElementById("list-container");
+    const clearAllButton = document.getElementById("clear-all");
 
     window.addTask = function addTask() {
         if (inputBox.value.trim() === '') {
@@ -31,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     inputBox.addEventListener("keydown", function(e) {
         if (e.key === "Enter") {
-            e.preventDefault(); // Prevent form submission or other default actions
+            e.preventDefault(); 
             addTask();
         }
     });
@@ -94,6 +95,14 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     showTask();
+    window.clearAllTasks = function clearAllTasks() {
+        if (conform("Are you sure you want to clear all tasks?"));
+        saveData();
+    }
+
+
+
+
 });
 
 

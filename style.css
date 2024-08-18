@@ -1,3 +1,14 @@
+input[type="text"],
+select,
+input[type="time"],
+button {
+    font-family: 'Bold', sans-serif;
+    font-size: 16px; /* Adjust the size as needed */
+    color: #333; /* Change the text color if desired */
+}
+
+
+
 *{
     margin: 0;
     padding: 0;
@@ -58,6 +69,10 @@ button{
     border-radius: 40px;
 }
 
+button:hover {
+    background-color: #af0bd8;
+}
+
 ul li{
    list-style: none;
    font-size: 17px;
@@ -103,4 +118,20 @@ ul li span{
 
 ul li span:hover{
     background:#edeef0;
+}
+
+#clear-all {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #ff4c4c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+}
+
+#clear-all:hover {
+    background-color: #e60000;
 }
